@@ -9,3 +9,4 @@ Target Value = 4,<br />
 Output: First Combination For “4” : [ [1,3],[2,2],[-4,8]];<br />
 Merge Into a single Array : [-4,1,2,2,3,8];<br />
 Second Combination For “8” : [ [ 1,3,2,2], [8,-4,2,2],....,[n,n,n,n] ]<br />
+The solution is in the Unibit_Games_Assignment/src/assignmentQuestion/TwoIntegers.java
