@@ -4,8 +4,8 @@ import java.util.*;
 
 public class TwoIntegers {
 
-	//Method to find the pairs of number whose sum will give the target.
-	private static int[][] findPairs(int[] arr, int target) {
+    //Method to find the pairs of number whose sum will give the target.
+    private static int[][] findPairs(int[] arr, int target) {
         int[][] pairs = new int[arr.length][2]; // Initialize a 2D array to store pairs
         int count = 0; // Counter for valid pairs
 
@@ -22,8 +22,11 @@ public class TwoIntegers {
 
         return Arrays.copyOf(pairs, count); // Return the valid pairs without any null element
     }
+    // Time Complexity: O(N^2), where N is the length of the input array. The method uses nested loops to check all pairs of numbers, resulting in quadratic time complexity.
+    // Space Complexity: O(N), as the method creates a 2D array to store pairs, which has a size proportional to the number of pairs found.
 
-	//The method is to merge the pairs of numbers whose sum will give the target.
+	
+    //The method is to merge the pairs of numbers whose sum will give the target.
     private static int[] mergeArray(int[][] arr) {
     	int newSize = arr[1].length * arr.length; // Calculate the size of the merged array
         int[] mergedArray = new int[newSize]; // Initialize the merged array
@@ -39,7 +42,10 @@ public class TwoIntegers {
         
         return mergedArray; // Return the merged array
     }
-   
+    // Time Complexity: O(N), where N is the total number of elements in the input 2D array. The method iterates over all elements in the array to merge them into a single array.
+    // Space Complexity: O(N), as the method creates a new array to store the merged elements, and the size of the array is equal to the total number of elements in the input 2D array.
+
+	
     // Recursive method to find sub-sequences with target sum
     private static void findDoublePairs(int[] arr, int target, int index, int sum, List<Integer> current, List<List<Integer>> result) {
         // Base case: if the sum is equal to the target, add the current sub-sequence to the result list
@@ -60,6 +66,9 @@ public class TwoIntegers {
             current.remove(current.size() - 1); // Backtrack: remove the last element from the current sub-sequence
         }
     }
+    // Time Complexity: O(2^N), where N is the length of the input array. The method generates all possible subsequences of the array, and the number of subsequences is exponential in the worst case.
+    // Space Complexity: O(N), as the method uses recursion and maintains a call stack with a maximum depth equal to the length of the input array.
+	
 
     // Method to find sub-sequences with target sum
     public static List<List<Integer>> findDoublePairs(int[] arr, int target) {
@@ -67,8 +76,10 @@ public class TwoIntegers {
         findDoublePairs(arr, target, 0, 0, new ArrayList<>(), result); // Call the recursive method to find the sub-sequences
         return result; // Return the result
     }
+    // Time Complexity: O(2^N * N), where N is the length of the input array. The method uses the recursive findDoublePairs method to find subsequences, which has an exponential time complexity. Additionally, for each subsequence found, the method calculates the sum of its elements, resulting in an additional iteration of size N.
+    // Space Complexity: O(2^N), as the method uses the recursive findDoublePairs method, which has an exponential space complexity due to the recursion and the storage of subsequences.
 
-	// Main method
+    // Main method
     public static void main(String[] args) {
         int[] array = {1, 3, 2, 2, -4, -6, -2, 8};
         int target = 4;
@@ -85,3 +96,6 @@ public class TwoIntegers {
     }
 
 }
+
+// Time Complexity: The most significant factor is the findDoublePairs method with a time complexity of O(2^N * N). The other methods contribute to the overall time complexity with lower-order terms. Therefore, the overall time complexity can be considered as O(2^N * N).
+// Space Complexity: The most significant factor is the findDoublePairs method with a space complexity of O(2^N). The other methods contribute to the overall space complexity with lower-order terms. Therefore, the overall space complexity can be considered as O(2^N).
