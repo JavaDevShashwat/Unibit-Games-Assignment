@@ -39,12 +39,36 @@ public class TwoIntegers {
         
         return mergedArray; // Return the merged array
     }
+   
+    // Recursive method to find sub-sequences with target sum
+    private static void findDoublePairs(int[] arr, int target, int index, int sum, List<Integer> current, List<List<Integer>> result) {
+        // Base case: if the sum is equal to the target, add the current sub-sequence to the result list
+        if (sum == target) {
+            result.add(new ArrayList<>(current));
+            return;
+        }
 
-   private static int[][] findDoublePairs(int[] arr, int target, int index) {
-       
-   }
+        // Base case: if index exceeds the array length or the sum exceeds the target, return
+        if (index >= arr.length || sum > target) {
+            return;
+        }
 
-    // Main method
+        // Explore all possible combinations by including the current element at index 'i'
+        for (int i = index; i < arr.length; i++) {
+            current.add(arr[i]); // Add the current element to the current sub-sequence
+            findDoublePairs(arr, target, i + 1, sum + arr[i], current, result); // Recursively find sub-sequences starting from index 'i+1' with updated sum
+            current.remove(current.size() - 1); // Backtrack: remove the last element from the current sub-sequence
+        }
+    }
+
+    // Method to find sub-sequences with target sum
+    public static List<List<Integer>> findDoublePairs(int[] arr, int target) {
+        List<List<Integer>> result = new ArrayList<>(); // Initialize the result list
+        findDoublePairs(arr, target, 0, 0, new ArrayList<>(), result); // Call the recursive method to find the sub-sequences
+        return result; // Return the result
+    }
+
+	// Main method
     public static void main(String[] args) {
         int[] array = {1, 3, 2, 2, -4, -6, -2, 8};
         int target = 4;
@@ -55,9 +79,9 @@ public class TwoIntegers {
         int[] mergedArray = mergeArray(pairs); // Merge pairs into a single array
         System.out.println("Merge Into a single Array : " + Arrays.toString(mergedArray));
 
-        int doubleTarget = target * 2;
-       	int[][] combinations = findDoublePairs(array, doubleTarget);
-      	System.out.println("Second Combination For "+ doubleTarget + " : " + Arrays.deepToString(combinations));
+        int doubleTarget = target * 2; // find again the combination of digits (can be multiple digits ) that are equal to the double targeted value and return it.
+        List<List<Integer>> answer = findDoublePairs(array, doubleTarget);
+      	System.out.println("Second Combination For "+ doubleTarget + " : " + answer);
     }
 
 }
