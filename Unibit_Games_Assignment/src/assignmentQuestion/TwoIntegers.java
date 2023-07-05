@@ -56,8 +56,8 @@ public class TwoIntegers {
         System.out.println("Merge Into a single Array : " + Arrays.toString(mergedArray));
 
         int doubleTarget = target * 2;
-       int[][] combinations = findDoublePairs(array, doubleTarget);
-       System.out.println("Second Combination For "+ doubleTarget + " : " + Arrays.deepToString(combinations));
+       	int[][] combinations = findDoublePairs(array, doubleTarget);
+      	System.out.println("Second Combination For "+ doubleTarget + " : " + Arrays.deepToString(combinations));
     }
 
 }
